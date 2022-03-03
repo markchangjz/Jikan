@@ -1,0 +1,6 @@
+framework module Pods_JikanTests {
+  umbrella header "Pods-JikanTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

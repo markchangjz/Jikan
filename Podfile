@@ -9,4 +9,9 @@ target 'Jikan' do
   pod 'AFNetworking', '~> 3.2.1'
   pod 'SDWebImage', '~> 4.4.1'
 
+  target 'JikanTests' do
+    inherit! :search_paths
+    # Pods for testing
+    pod 'AFNetworking', '~> 3.2.1'
+  end
 end
