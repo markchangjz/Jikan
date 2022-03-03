@@ -45,6 +45,16 @@ class FilterViewController: UIViewController {
 
         configureView()
     }
+    
+    @IBAction func searchButtonDidTap(_ sender: UIBarButtonItem) {
+        let selectedType = options[selectedTypeIndex].value
+        let selectedSubtype = options[selectedTypeIndex].subOption[selectedSubtypeIndex].value
+        
+        let searchViewController = SearchViewController()
+        searchViewController.type = selectedType
+        searchViewController.subtype = selectedSubtype
+        navigationController?.pushViewController(searchViewController, animated: true)
+    }
 }
 
 // MARK: UITableViewDelegate & UITableViewDataSource

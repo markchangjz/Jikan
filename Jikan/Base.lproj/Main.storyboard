@@ -34,7 +34,13 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Top Rated" id="l8J-pc-aox"/>
+                    <navigationItem key="navigationItem" title="Top Rated" id="l8J-pc-aox">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="fHv-x5-iea">
+                            <connections>
+                                <action selector="searchButtonDidTap:" destination="BYZ-38-t0r" id="Xy4-go-e9c"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
