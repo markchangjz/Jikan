@@ -1,5 +1,6 @@
 #import <XCTest/XCTest.h>
 #import "MKCRequestAPI.h"
+#import "Jikan-Swift.h"
 
 @interface MKCRequestAPITests : XCTestCase
 
@@ -21,12 +22,16 @@
     [[MKCRequestAPI sharedAPI] topWithType:@"anime" subtype:@"upcoming" page:1 successHandler:^(NSURLResponse *response, id responseObject) {
         [expectation fulfill];
         
+        MKCTopModel *model = [MKCTopModel createFrom:responseObject];
+        
         XCTAssertNotNil(responseObject);
+        XCTAssertNotNil(model);
+        XCTAssertEqual(model.entities.count, 50);
     } failureHandler:^(NSError *error) {
         XCTFail(@"error %@", error);
     }];
     
-    [self waitForExpectationsWithTimeout:5.0 handler:nil];
+    [self waitForExpectationsWithTimeout:10.0 handler:nil];
 }
 
 
