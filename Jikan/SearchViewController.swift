@@ -91,7 +91,7 @@ extension SearchViewController {
     
     private func configureView() {
         title = "Result"
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         view.addSubview(loadingIndicatorView)
         view.addSubview(tableView)
         
