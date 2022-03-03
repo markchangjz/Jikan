@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E4CADAD302189124DA3C4F5 /* Pods_Jikan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99213DC04F3E0DE97B384E8E /* Pods_Jikan.framework */; };
 		64C0F5EB27D0D5C300EA0A96 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C0F5EA27D0D5C300EA0A96 /* AppDelegate.m */; };
 		64C0F5EE27D0D5C300EA0A96 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C0F5ED27D0D5C300EA0A96 /* SceneDelegate.m */; };
 		64C0F5F127D0D5C300EA0A96 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C0F5F027D0D5C300EA0A96 /* ViewController.m */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C63665DC03CE51F688DBC56 /* Pods-Jikan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jikan.debug.xcconfig"; path = "Target Support Files/Pods-Jikan/Pods-Jikan.debug.xcconfig"; sourceTree = "<group>"; };
 		64C0F5E627D0D5C300EA0A96 /* Jikan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jikan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64C0F5E927D0D5C300EA0A96 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		64C0F5EA27D0D5C300EA0A96 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -29,6 +31,8 @@
 		64C0F5F827D0D5C500EA0A96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		64C0F5FA27D0D5C500EA0A96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64C0F5FB27D0D5C500EA0A96 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		99213DC04F3E0DE97B384E8E /* Pods_Jikan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jikan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A12F204E21482009C15EF70 /* Pods-Jikan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jikan.release.xcconfig"; path = "Target Support Files/Pods-Jikan/Pods-Jikan.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,17 +40,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E4CADAD302189124DA3C4F5 /* Pods_Jikan.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		56DFFA8ED2B898C38D636D5A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0C63665DC03CE51F688DBC56 /* Pods-Jikan.debug.xcconfig */,
+				9A12F204E21482009C15EF70 /* Pods-Jikan.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		64C0F5DD27D0D5C300EA0A96 = {
 			isa = PBXGroup;
 			children = (
 				64C0F5E827D0D5C300EA0A96 /* Jikan */,
 				64C0F5E727D0D5C300EA0A96 /* Products */,
+				56DFFA8ED2B898C38D636D5A /* Pods */,
+				C4DBDA51B4B0D9A61D80F94D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,6 +93,14 @@
 			path = Jikan;
 			sourceTree = "<group>";
 		};
+		C4DBDA51B4B0D9A61D80F94D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				99213DC04F3E0DE97B384E8E /* Pods_Jikan.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -83,9 +108,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 64C0F5FF27D0D5C500EA0A96 /* Build configuration list for PBXNativeTarget "Jikan" */;
 			buildPhases = (
+				1B484A30218BC6F418121CEE /* [CP] Check Pods Manifest.lock */,
 				64C0F5E227D0D5C300EA0A96 /* Sources */,
 				64C0F5E327D0D5C300EA0A96 /* Frameworks */,
 				64C0F5E427D0D5C300EA0A96 /* Resources */,
+				0983C758A378BE4BD2186770 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -140,6 +167,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0983C758A378BE4BD2186770 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Jikan/Pods-Jikan-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Jikan/Pods-Jikan-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Jikan/Pods-Jikan-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1B484A30218BC6F418121CEE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Jikan-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		64C0F5E227D0D5C300EA0A96 /* Sources */ = {
@@ -289,6 +358,7 @@
 		};
 		64C0F60027D0D5C500EA0A96 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C63665DC03CE51F688DBC56 /* Pods-Jikan.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -316,6 +386,7 @@
 		};
 		64C0F60127D0D5C500EA0A96 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A12F204E21482009C15EF70 /* Pods-Jikan.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
