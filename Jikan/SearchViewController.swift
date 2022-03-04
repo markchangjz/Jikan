@@ -1,3 +1,11 @@
+/*
+ Add Load More Data Function into UITableView
+ https://medium.com/@quangtqag/how-to-add-load-more-data-function-into-uitableview-a622e0282703
+ 
+ How to add Load More / Infinite Scrolling in iOS using Swift
+ https://johncodeos.com/how-to-add-load-more-infinite-scrolling-in-ios-using-swift/
+ */
+
 import UIKit
 
 enum UIState {
@@ -6,12 +14,17 @@ enum UIState {
     case error(message: String)
 }
 
+enum APIResponseError: Error {
+    case JSONFormatUnexpectable
+    case unreachable
+}
+
 class SearchViewController: UIViewController {
     
     var type: String?
     var subtype: String?
-    var page: Int = 1
-    var entities = [TopEntityModel]()
+    private var data = [TopEntityModel]()
+    private var fetchingPosition = 1
     
     private var state: UIState = .loading {
         didSet {
@@ -43,28 +56,65 @@ class SearchViewController: UIViewController {
 
         configureView()
         
-        state = .loading
+        fetchData()
+    }
+}
+
+// MARK: API
+extension SearchViewController {
+    
+    private func fetchData() {
+        if fetchingPosition == 1 {
+            state = .loading
+        }
         
-        MKCRequestAPI.shared().top(withType: type, subtype: subtype, page: 1) { response, responseObject in
+        fetchData(page: fetchingPosition) { result in
+            switch result {
+            case .success(let newData):
+                self.insertNewData(newData: newData)
+                self.state = .finish
+                
+            case .failure(let error):
+                self.state = .error(message: error.localizedDescription)
+            }
+        }
+    }
+    
+    private func insertNewData(newData: [TopEntityModel]) {
+        if (newData.count > 0) {
+            var newIndexPaths = [IndexPath]()
+            for rowPosition in 0..<newData.count {
+                let newIndexPath = IndexPath(row: self.data.count + rowPosition, section: 0)
+                newIndexPaths.append(newIndexPath)
+            }
+            self.data += newData
+            self.tableView.insertRows(at: newIndexPaths, with: .automatic)
+        }
+    }
+    
+    private func fetchData(page: Int, handler: ((Result<[TopEntityModel], Error>) -> Void)?) {
+        
+        MKCRequestAPI.shared().top(withType: type, subtype: subtype, page: page) { response, responseObject in
             
             guard let responseObject = responseObject else {
-                self.state = .error(message: "parse error")
+                handler?(.failure(APIResponseError.JSONFormatUnexpectable))
                 return
             }
             
             do {
                 let responseData = try JSONSerialization.data(withJSONObject: responseObject, options: .prettyPrinted)
                 let model = try JSONDecoder().decode(TopModel.self, from: responseData)
-                if let entities = model.entities {
-                    self.entities += entities
+                if let data = model.entities {
+                    self.fetchingPosition += 1
+                    handler?(.success(data))
+                } else {
+                    handler?(.success([])) // TODO: Error handle ?
                 }
-                self.tableView.reloadData()
-                self.state = .finish
             } catch {
-                self.state = .error(message: "parse error")
+                handler?(.failure(APIResponseError.JSONFormatUnexpectable))
             }
         } failureHandler: { error in
-            self.state = .error(message: error?.localizedDescription ?? "Something wrong")
+            handler?(.failure(APIResponseError.unreachable))
         }
     }
 }
@@ -73,16 +123,21 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return entities.count
+        return data.count
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MKCTopRatedTableViewCell.identifier(), for: indexPath) as! MKCTopRatedTableViewCell
         cell.selectionStyle = .none
-        cell.configure(with: entities[indexPath.row])
+        cell.configure(with: data[indexPath.row])
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if (indexPath.row == data.count - 1) {
+            fetchData()
+        }
     }
 }
 
