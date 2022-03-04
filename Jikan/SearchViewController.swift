@@ -10,7 +10,10 @@ import UIKit
 
 enum UIState {
     case loading
-    case finish
+    case loadMoreLoading
+    case loadMoreFinish
+    case partialLoaded
+    case fullyLoaded
     case error(message: String)
 }
 
@@ -44,6 +47,8 @@ class SearchViewController: UIViewController {
         return tableView
     }()
     
+    private lazy var activityIndicator = LoadMoreActivityIndicator(scrollView:tableView, spacingFromLastCell:10, spacingFromLastCellWhenLoadMoreActionStart:60)
+    
     private lazy var loadingIndicatorView: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView(style: .medium)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -64,16 +69,19 @@ class SearchViewController: UIViewController {
 extension SearchViewController {
     
     private func fetchData() {
-        if fetchingPosition == 1 {
-            state = .loading
-        }
+        
+        state = (fetchingPosition == 1) ? .loading : .loadMoreLoading
         
         fetchData(page: fetchingPosition) { result in
             switch result {
             case .success(let newData):
                 self.insertNewData(newData: newData)
-                self.state = .finish
                 
+                if newData.count == 0 {
+                    self.state = .fullyLoaded
+                } else {
+                    self.state = (self.fetchingPosition == 2) ? .partialLoaded : .loadMoreFinish
+                }
             case .failure(let error):
                 self.state = .error(message: error.localizedDescription)
             }
@@ -114,7 +122,7 @@ extension SearchViewController {
                 handler?(.failure(APIResponseError.JSONFormatUnexpectable))
             }
         } failureHandler: { error in
-            handler?(.failure(APIResponseError.unreachable))
+            handler?(.success([])) // TODO: fullyLoaded
         }
     }
 }
@@ -138,6 +146,14 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         if (indexPath.row == data.count - 1) {
             fetchData()
         }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if case .fullyLoaded = state {
+            return
+        }
+        
+        activityIndicator.start(closure: nil)
     }
 }
 
@@ -170,14 +186,31 @@ extension SearchViewController {
         case .loading:
             loadingIndicatorView.startAnimating()
             tableView.isHidden = true
+            activityIndicator.stop()
             break
-        case .finish:
+        case .loadMoreLoading:
             loadingIndicatorView.stopAnimating()
             tableView.isHidden = false
+            activityIndicator.start(closure: nil)
+            break
+        case .loadMoreFinish:
+            loadingIndicatorView.stopAnimating()
+            tableView.isHidden = false
+            activityIndicator.stop()
+            break
+        case .partialLoaded:
+            loadingIndicatorView.stopAnimating()
+            tableView.isHidden = false
+            activityIndicator.stop()
+        case .fullyLoaded:
+            loadingIndicatorView.stopAnimating()
+            tableView.isHidden = false
+            activityIndicator.stop()
             break
         case .error(message: let message):
             loadingIndicatorView.stopAnimating()
             tableView.isHidden = true
+            activityIndicator.stop()
             break
         }
     }

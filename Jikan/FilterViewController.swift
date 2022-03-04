@@ -53,6 +53,7 @@ class FilterViewController: UIViewController {
         let searchViewController = SearchViewController()
         searchViewController.type = selectedType
         searchViewController.subtype = selectedSubtype
+//        searchViewController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(searchViewController, animated: true)
     }
 }
