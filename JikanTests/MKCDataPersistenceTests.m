@@ -17,6 +17,10 @@
     // Put teardown code here. This method is called after the invocation of each test method in the class.
 }
 
++ (void)tearDown {
+    [MKCDataPersistence resetAllData];
+}
+
 - (void)testSavaAndRetrieveItem {
     MKCFavoriteItem *saveItem = [[MKCFavoriteItem alloc] initWithID:@"0000" title:@"item_title" image:@"item_image"];
     
