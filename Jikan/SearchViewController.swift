@@ -82,7 +82,14 @@ extension SearchViewController {
                     self.state = .partialLoaded
                 }
             case .failure(let error):
-                self.state = .error(message: error.localizedDescription)
+                var message = error.localizedDescription
+                if error as? APIResponseError == APIResponseError.JSONFormatUnexpectable {
+                    message = "Try again later"
+                } else if error as? APIResponseError == APIResponseError.unreachable {
+                    message = "Network connection lost"
+                }
+                
+                self.state = .error(message: message)
             }
         }
     }
@@ -115,13 +122,18 @@ extension SearchViewController {
                     self.fetchingPosition += 1
                     handler?(.success(data))
                 } else {
-                    handler?(.success([])) // TODO: Error handle ?
+                    handler?(.success([]))
                 }
             } catch {
                 handler?(.failure(APIResponseError.JSONFormatUnexpectable))
             }
         } failureHandler: { error in
-            handler?(.success([])) // TODO: fullyLoaded
+            let isReachedEnd = (error as NSError?)?.code == NSURLErrorBadServerResponse
+            if isReachedEnd {
+                handler?(.success([]))
+            } else {
+                handler?(.failure(APIResponseError.unreachable))
+            }
         }
     }
 }
@@ -206,6 +218,22 @@ extension SearchViewController {
         let webViewNavigationController = UINavigationController(rootViewController: webViewController)
         present(webViewNavigationController, animated: true)
     }
+    
+    private func presentErrorAlert(message: String) {
+        let feedbackGenerator = UINotificationFeedbackGenerator()
+        feedbackGenerator.prepare()
+        
+        let alert = UIAlertController(title: "Ooops", message: message, preferredStyle: .alert)
+        let closeAction = UIAlertAction(title: "Close", style: .cancel)
+        let retryAction = UIAlertAction(title: "Retry", style: .default) { _ in
+            self.fetchData()
+        }
+        alert.addAction(closeAction)
+        alert.addAction(retryAction)
+        present(alert, animated: true) {
+            feedbackGenerator.notificationOccurred(.error)
+        }
+    }
 }
 
 // MARK: Observer
@@ -272,8 +300,9 @@ extension SearchViewController {
             activityIndicator.stop()
         case .error(message: let message):
             loadingIndicatorView.stopAnimating()
-            tableView.isHidden = true
+            tableView.isHidden = false
             activityIndicator.stop()
+            presentErrorAlert(message: message)
         }
     }
 }
