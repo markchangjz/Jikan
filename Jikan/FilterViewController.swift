@@ -31,7 +31,7 @@ class FilterViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(MKCBasicTableViewCell.self, forCellReuseIdentifier: MKCBasicTableViewCell.identifier())
         tableView.delegate = self
         tableView.dataSource = self
         return tableView
@@ -82,7 +82,7 @@ extension FilterViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: MKCBasicTableViewCell.identifier(), for: indexPath) as! MKCBasicTableViewCell
         cell.selectionStyle = .none
         
         if indexPath.section == 0 {
