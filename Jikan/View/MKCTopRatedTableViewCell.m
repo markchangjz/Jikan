@@ -52,6 +52,14 @@
 	}
 }
 
+#pragma mark - IBAction
+
+- (void)collect:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(tableViewCell:collectItemAtIndex:)]) {
+        [self.delegate tableViewCell:self collectItemAtIndex:self.tag];
+    }
+}
+
 #pragma mark - UI Layout
 
 - (void)layoutMainStackView {
@@ -95,6 +103,7 @@
 		_collectionButton = [UIButton buttonWithType:UIButtonTypeCustom];
 		_collectionButton.translatesAutoresizingMaskIntoConstraints = NO;
 		[_collectionButton setImage:[UIImage imageNamed:@"not_collected"] forState:UIControlStateNormal];
+        [_collectionButton addTarget:self action:@selector(collect:) forControlEvents:UIControlEventTouchUpInside];
 	}
 	return _collectionButton;
 }

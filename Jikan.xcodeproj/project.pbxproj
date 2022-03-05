@@ -25,6 +25,7 @@
 		64C0F62727D10A2B00EA0A96 /* MKCBasicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C0F62527D10A2B00EA0A96 /* MKCBasicTableViewCell.m */; };
 		64C0F62927D2434400EA0A96 /* LoadMoreActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C0F62827D2434400EA0A96 /* LoadMoreActivityIndicator.swift */; };
 		64C0F62C27D2E91B00EA0A96 /* MKCWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C0F62B27D2E91B00EA0A96 /* MKCWebViewController.m */; };
+		64C0F63127D3010400EA0A96 /* MKCDataPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C0F63027D3010400EA0A96 /* MKCDataPersistence.m */; };
 		955E2B62D04E7FE993879D15 /* Pods_JikanTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 204374BB47F9538DD3BE77E2 /* Pods_JikanTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,8 @@
 		64C0F62827D2434400EA0A96 /* LoadMoreActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreActivityIndicator.swift; sourceTree = "<group>"; };
 		64C0F62A27D2E91B00EA0A96 /* MKCWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCWebViewController.h; sourceTree = "<group>"; };
 		64C0F62B27D2E91B00EA0A96 /* MKCWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCWebViewController.m; sourceTree = "<group>"; };
+		64C0F62F27D3010400EA0A96 /* MKCDataPersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCDataPersistence.h; sourceTree = "<group>"; };
+		64C0F63027D3010400EA0A96 /* MKCDataPersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCDataPersistence.m; sourceTree = "<group>"; };
 		8281C935CE21E3720AAD36E4 /* Pods-JikanTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JikanTests.debug.xcconfig"; path = "Target Support Files/Pods-JikanTests/Pods-JikanTests.debug.xcconfig"; sourceTree = "<group>"; };
 		99213DC04F3E0DE97B384E8E /* Pods_Jikan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jikan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A12F204E21482009C15EF70 /* Pods-Jikan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jikan.release.xcconfig"; path = "Target Support Files/Pods-Jikan/Pods-Jikan.release.xcconfig"; sourceTree = "<group>"; };
@@ -133,6 +136,7 @@
 				64C0F60227D0D77A00EA0A96 /* API */,
 				64C0F62D27D2ECFA00EA0A96 /* Common */,
 				64C0F62127D10A1600EA0A96 /* View */,
+				64C0F62E27D3010400EA0A96 /* Data Persistence */,
 				64C0F5E927D0D5C300EA0A96 /* AppDelegate.h */,
 				64C0F5EA27D0D5C300EA0A96 /* AppDelegate.m */,
 				64C0F5EC27D0D5C300EA0A96 /* SceneDelegate.h */,
@@ -198,6 +202,15 @@
 				64C0F62B27D2E91B00EA0A96 /* MKCWebViewController.m */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		64C0F62E27D3010400EA0A96 /* Data Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				64C0F62F27D3010400EA0A96 /* MKCDataPersistence.h */,
+				64C0F63027D3010400EA0A96 /* MKCDataPersistence.m */,
+			);
+			path = "Data Persistence";
 			sourceTree = "<group>";
 		};
 		C4DBDA51B4B0D9A61D80F94D /* Frameworks */ = {
@@ -398,6 +411,7 @@
 				64C0F60927D0D78B00EA0A96 /* MKCRequestAPI.m in Sources */,
 				64C0F62627D10A2B00EA0A96 /* MKCTopRatedTableViewCell.m in Sources */,
 				64C0F62C27D2E91B00EA0A96 /* MKCWebViewController.m in Sources */,
+				64C0F63127D3010400EA0A96 /* MKCDataPersistence.m in Sources */,
 				64C0F62727D10A2B00EA0A96 /* MKCBasicTableViewCell.m in Sources */,
 				64C0F60A27D0D78B00EA0A96 /* MKCRequestAPI+Private.m in Sources */,
 				64C0F61E27D0F0C500EA0A96 /* FilterViewController.swift in Sources */,

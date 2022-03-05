@@ -136,7 +136,17 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MKCTopRatedTableViewCell.identifier(), for: indexPath) as! MKCTopRatedTableViewCell
+        cell.tag = indexPath.row
+        cell.delegate = self
         cell.configure(with: data[indexPath.row])
+        
+        if let type = type, let  subtype = subtype {
+            let id = data[indexPath.row].id
+            let trackId = "\(id)_\(type)_\(subtype)"
+            cell.isCollected = MKCDataPersistence.hasCollectdMovie(withTrackId: trackId)
+        } else {
+            cell.isCollected = false
+        }
         
         return cell
     }
@@ -161,6 +171,31 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         activityIndicator.start(closure: nil)
+    }
+}
+
+// MARK: MKCTopRatedTableViewCellDelegate
+extension SearchViewController: MKCTopRatedTableViewCellDelegate {
+    
+    func tableViewCell(_ topRatedTableViewCell: MKCTopRatedTableViewCell!, collectItemAt index: Int) {
+        guard let type = type else { return }
+        guard let subtype = subtype else { return }
+        let id = data[index].id
+        let title = data[index].title
+        let image = data[index].image
+        let trackId = "\(id)_\(type)_\(subtype)"
+        
+        if MKCDataPersistence.hasCollectdMovie(withTrackId: trackId) {
+            MKCDataPersistence.removeCollectedMovie(withTrackId: trackId)
+        } else {
+            MKCDataPersistence.collectMovie(withTrackId: trackId, info: [
+                "title": title ?? "",
+                "image": image ?? "",
+            ])
+        }
+        
+        let indexPath = IndexPath(row: index, section: 0)
+        tableView.reloadRows(at: [indexPath], with: .none)
     }
 }
 
