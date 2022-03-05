@@ -2,7 +2,7 @@ import Foundation
 
 @objc(MKCTopEntityModel)
 class TopEntityModel: NSObject, Decodable {
-    @objc let id: String?
+    @objc let id: Int
     @objc let image: String?
     @objc let title: String?
     @objc let rank: Int
@@ -24,7 +24,7 @@ class TopEntityModel: NSObject, Decodable {
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try? container.decode(String.self, forKey: .id)
+        id = try container.decode(Int.self, forKey: .id)
         image = try? container.decode(String.self, forKey: .image)
         title = try? container.decode(String.self, forKey: .title)
         rank = try container.decode(Int.self, forKey: .rank)
