@@ -7,3 +7,5 @@
 #import "MKCTopRatedTableViewCell.h"
 #import "MKCWebViewController.h"
 #import "MKCDataPersistence.h"
+#import "UIImageView+WebCache.h"
+#import "MKCFavoriteTableViewCell.h"

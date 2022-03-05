@@ -11,6 +11,7 @@ extern NSString *const MKCCollectedMoviesKey;
 + (void)collectMovieWithTrackId:(nonnull NSString *)trackId info:(nonnull NSDictionary *)info;
 + (void)removeCollectedMovieWithTrackId:(nonnull NSString *)trackId;
 + (BOOL)hasCollectdMovieWithTrackId:(nonnull NSString *)trackId;
++ (NSDictionary<NSString *, NSDictionary<NSString *, NSString *> *> *)collectedMovies;
 
 @end
 

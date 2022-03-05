@@ -27,4 +27,9 @@ NSString *const MKCCollectedMoviesKey = @"MKCCollectedMoviesKey";
     return [collectedMovies.allKeys containsObject:trackId];
 }
 
++ (NSDictionary<NSString *, NSDictionary<NSString *, NSString *> *> *)collectedMovies {
+    NSDictionary *collectedMovies = [self.userDefaults dictionaryForKey:MKCCollectedMoviesKey];
+    return collectedMovies;
+}
+
 @end

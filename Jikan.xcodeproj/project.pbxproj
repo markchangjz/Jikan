@@ -26,6 +26,8 @@
 		64C0F62927D2434400EA0A96 /* LoadMoreActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C0F62827D2434400EA0A96 /* LoadMoreActivityIndicator.swift */; };
 		64C0F62C27D2E91B00EA0A96 /* MKCWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C0F62B27D2E91B00EA0A96 /* MKCWebViewController.m */; };
 		64C0F63127D3010400EA0A96 /* MKCDataPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C0F63027D3010400EA0A96 /* MKCDataPersistence.m */; };
+		64C0F63327D3478900EA0A96 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C0F63227D3478900EA0A96 /* FavoritesViewController.swift */; };
+		64C0F63627D3519F00EA0A96 /* MKCFavoriteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C0F63527D3519F00EA0A96 /* MKCFavoriteTableViewCell.m */; };
 		955E2B62D04E7FE993879D15 /* Pods_JikanTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 204374BB47F9538DD3BE77E2 /* Pods_JikanTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +76,9 @@
 		64C0F62B27D2E91B00EA0A96 /* MKCWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCWebViewController.m; sourceTree = "<group>"; };
 		64C0F62F27D3010400EA0A96 /* MKCDataPersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCDataPersistence.h; sourceTree = "<group>"; };
 		64C0F63027D3010400EA0A96 /* MKCDataPersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCDataPersistence.m; sourceTree = "<group>"; };
+		64C0F63227D3478900EA0A96 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		64C0F63427D3519F00EA0A96 /* MKCFavoriteTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKCFavoriteTableViewCell.h; sourceTree = "<group>"; };
+		64C0F63527D3519F00EA0A96 /* MKCFavoriteTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKCFavoriteTableViewCell.m; sourceTree = "<group>"; };
 		8281C935CE21E3720AAD36E4 /* Pods-JikanTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JikanTests.debug.xcconfig"; path = "Target Support Files/Pods-JikanTests/Pods-JikanTests.debug.xcconfig"; sourceTree = "<group>"; };
 		99213DC04F3E0DE97B384E8E /* Pods_Jikan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jikan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A12F204E21482009C15EF70 /* Pods-Jikan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jikan.release.xcconfig"; path = "Target Support Files/Pods-Jikan/Pods-Jikan.release.xcconfig"; sourceTree = "<group>"; };
@@ -143,6 +148,7 @@
 				64C0F5ED27D0D5C300EA0A96 /* SceneDelegate.m */,
 				64C0F61D27D0F0C500EA0A96 /* FilterViewController.swift */,
 				64C0F61F27D1089B00EA0A96 /* SearchViewController.swift */,
+				64C0F63227D3478900EA0A96 /* FavoritesViewController.swift */,
 				64C0F5F227D0D5C300EA0A96 /* Main.storyboard */,
 				64C0F5F527D0D5C500EA0A96 /* Assets.xcassets */,
 				64C0F5F727D0D5C500EA0A96 /* LaunchScreen.storyboard */,
@@ -190,6 +196,8 @@
 				64C0F62527D10A2B00EA0A96 /* MKCBasicTableViewCell.m */,
 				64C0F62327D10A2B00EA0A96 /* MKCTopRatedTableViewCell.h */,
 				64C0F62227D10A2B00EA0A96 /* MKCTopRatedTableViewCell.m */,
+				64C0F63427D3519F00EA0A96 /* MKCFavoriteTableViewCell.h */,
+				64C0F63527D3519F00EA0A96 /* MKCFavoriteTableViewCell.m */,
 				64C0F62827D2434400EA0A96 /* LoadMoreActivityIndicator.swift */,
 			);
 			path = View;
@@ -411,6 +419,7 @@
 				64C0F60927D0D78B00EA0A96 /* MKCRequestAPI.m in Sources */,
 				64C0F62627D10A2B00EA0A96 /* MKCTopRatedTableViewCell.m in Sources */,
 				64C0F62C27D2E91B00EA0A96 /* MKCWebViewController.m in Sources */,
+				64C0F63627D3519F00EA0A96 /* MKCFavoriteTableViewCell.m in Sources */,
 				64C0F63127D3010400EA0A96 /* MKCDataPersistence.m in Sources */,
 				64C0F62727D10A2B00EA0A96 /* MKCBasicTableViewCell.m in Sources */,
 				64C0F60A27D0D78B00EA0A96 /* MKCRequestAPI+Private.m in Sources */,
@@ -421,6 +430,7 @@
 				64C0F60B27D0D78B00EA0A96 /* MKCURLGuide.m in Sources */,
 				64C0F61C27D0E2A200EA0A96 /* TopModel.swift in Sources */,
 				64C0F5FC27D0D5C500EA0A96 /* main.m in Sources */,
+				64C0F63327D3478900EA0A96 /* FavoritesViewController.swift in Sources */,
 				64C0F5EE27D0D5C300EA0A96 /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
