@@ -258,13 +258,10 @@ extension SearchViewController {
             loadingIndicatorView.startAnimating()
             tableView.isHidden = true
             activityIndicator.stop()
-            break
         case .loadMoreLoading:
             loadingIndicatorView.stopAnimating()
             tableView.isHidden = false
             activityIndicator.start(closure: nil)
-            break
-            break
         case .partialLoaded:
             loadingIndicatorView.stopAnimating()
             tableView.isHidden = false
@@ -273,12 +270,10 @@ extension SearchViewController {
             loadingIndicatorView.stopAnimating()
             tableView.isHidden = false
             activityIndicator.stop()
-            break
         case .error(message: let message):
             loadingIndicatorView.stopAnimating()
             tableView.isHidden = true
             activityIndicator.stop()
-            break
         }
     }
 }
