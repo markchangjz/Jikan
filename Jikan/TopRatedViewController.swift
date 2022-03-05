@@ -23,8 +23,18 @@ enum APIResponseError: Error {
 
 class TopRatedViewController: UIViewController {
     
+    init(requestAPI: MKCRequestAPI = MKCRequestAPI.shared()) {
+        super.init(nibName: nil, bundle: nil)
+        self.requestAPI = requestAPI
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     var type: String?
     var subtype: String?
+    private var requestAPI: MKCRequestAPI?
     private var data = [TopEntityModel]()
     private var fetchingPosition = 1
     
@@ -108,7 +118,7 @@ extension TopRatedViewController {
     
     private func fetchData(page: Int, handler: ((Result<[TopEntityModel], Error>) -> Void)?) {
         
-        MKCRequestAPI.shared().top(withType: type, subtype: subtype, page: page) { response, responseObject in
+        self.requestAPI?.top(withType: type, subtype: subtype, page: page) { response, responseObject in
             
             guard let responseObject = responseObject else {
                 handler?(.failure(APIResponseError.JSONFormatUnexpectable))
@@ -306,3 +316,16 @@ extension TopRatedViewController {
         }
     }
 }
+
+#if DEBUG
+extension TopRatedViewController {
+    
+    public var expose_state: UIState {
+        self.state
+    }
+    
+    public func expose_fetchData() {
+        self.fetchData()
+    }
+}
+#endif

@@ -30,6 +30,9 @@
 		64C0F63627D3519F00EA0A96 /* MKCFavoriteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C0F63527D3519F00EA0A96 /* MKCFavoriteTableViewCell.m */; };
 		64C0F63927D3702400EA0A96 /* MKCFavoriteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C0F63827D3702400EA0A96 /* MKCFavoriteItem.m */; };
 		64C0F63B27D39ACA00EA0A96 /* MKCDataPersistenceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C0F63A27D39ACA00EA0A96 /* MKCDataPersistenceTests.m */; };
+		64C0F63E27D3A2A600EA0A96 /* MKCUnitTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C0F63D27D3A2A600EA0A96 /* MKCUnitTestHelper.m */; };
+		64C0F64227D3A3DD00EA0A96 /* TopRatedViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C0F64127D3A3DD00EA0A96 /* TopRatedViewControllerTests.swift */; };
+		64C0F64527D3A67B00EA0A96 /* top-success.json in Resources */ = {isa = PBXBuildFile; fileRef = 64C0F64427D3A67B00EA0A96 /* top-success.json */; };
 		955E2B62D04E7FE993879D15 /* Pods_JikanTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 204374BB47F9538DD3BE77E2 /* Pods_JikanTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +87,11 @@
 		64C0F63727D3702400EA0A96 /* MKCFavoriteItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKCFavoriteItem.h; sourceTree = "<group>"; };
 		64C0F63827D3702400EA0A96 /* MKCFavoriteItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKCFavoriteItem.m; sourceTree = "<group>"; };
 		64C0F63A27D39ACA00EA0A96 /* MKCDataPersistenceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKCDataPersistenceTests.m; sourceTree = "<group>"; };
+		64C0F63C27D3A2A600EA0A96 /* MKCUnitTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCUnitTestHelper.h; sourceTree = "<group>"; };
+		64C0F63D27D3A2A600EA0A96 /* MKCUnitTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCUnitTestHelper.m; sourceTree = "<group>"; };
+		64C0F64027D3A3DC00EA0A96 /* JikanTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JikanTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		64C0F64127D3A3DD00EA0A96 /* TopRatedViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedViewControllerTests.swift; sourceTree = "<group>"; };
+		64C0F64427D3A67B00EA0A96 /* top-success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "top-success.json"; sourceTree = "<group>"; };
 		8281C935CE21E3720AAD36E4 /* Pods-JikanTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JikanTests.debug.xcconfig"; path = "Target Support Files/Pods-JikanTests/Pods-JikanTests.debug.xcconfig"; sourceTree = "<group>"; };
 		99213DC04F3E0DE97B384E8E /* Pods_Jikan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jikan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A12F204E21482009C15EF70 /* Pods-Jikan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jikan.release.xcconfig"; path = "Target Support Files/Pods-Jikan/Pods-Jikan.release.xcconfig"; sourceTree = "<group>"; };
@@ -181,8 +189,12 @@
 		64C0F61127D0DE6B00EA0A96 /* JikanTests */ = {
 			isa = PBXGroup;
 			children = (
+				64C0F64327D3A66900EA0A96 /* API response JSON data */,
+				64C0F63F27D3A2C500EA0A96 /* Helper */,
 				64C0F61227D0DE6B00EA0A96 /* MKCRequestAPITests.m */,
 				64C0F63A27D39ACA00EA0A96 /* MKCDataPersistenceTests.m */,
+				64C0F64127D3A3DD00EA0A96 /* TopRatedViewControllerTests.swift */,
+				64C0F64027D3A3DC00EA0A96 /* JikanTests-Bridging-Header.h */,
 			);
 			path = JikanTests;
 			sourceTree = "<group>";
@@ -227,6 +239,23 @@
 				64C0F63827D3702400EA0A96 /* MKCFavoriteItem.m */,
 			);
 			path = "Data Persistence";
+			sourceTree = "<group>";
+		};
+		64C0F63F27D3A2C500EA0A96 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				64C0F63C27D3A2A600EA0A96 /* MKCUnitTestHelper.h */,
+				64C0F63D27D3A2A600EA0A96 /* MKCUnitTestHelper.m */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		64C0F64327D3A66900EA0A96 /* API response JSON data */ = {
+			isa = PBXGroup;
+			children = (
+				64C0F64427D3A67B00EA0A96 /* top-success.json */,
+			);
+			path = "API response JSON data";
 			sourceTree = "<group>";
 		};
 		C4DBDA51B4B0D9A61D80F94D /* Frameworks */ = {
@@ -295,6 +324,7 @@
 					};
 					64C0F60F27D0DE6B00EA0A96 = {
 						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
 						TestTargetID = 64C0F5E527D0D5C300EA0A96;
 					};
 				};
@@ -333,6 +363,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64C0F64527D3A67B00EA0A96 /* top-success.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,7 +480,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				64C0F61327D0DE6B00EA0A96 /* MKCRequestAPITests.m in Sources */,
+				64C0F63E27D3A2A600EA0A96 /* MKCUnitTestHelper.m in Sources */,
 				64C0F63B27D39ACA00EA0A96 /* MKCDataPersistenceTests.m in Sources */,
+				64C0F64227D3A3DD00EA0A96 /* TopRatedViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -619,6 +652,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = tw.com.markchang.Jikan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Jikan/Jikan-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -664,6 +698,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y53W55T72H;
@@ -674,10 +709,18 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage/SDWebImage.framework/Headers\"",
 					$CONFIGURATION_TEMP_DIR/Jikan.build/DerivedSources,
 				);
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = tw.com.markchang.JikanTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "JikanTests/JikanTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Jikan.app/Jikan";
 			};
@@ -689,14 +732,22 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y53W55T72H;
 				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = tw.com.markchang.JikanTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "JikanTests/JikanTests-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Jikan.app/Jikan";
 			};
