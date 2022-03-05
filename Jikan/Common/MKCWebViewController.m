@@ -36,6 +36,8 @@
 #pragma mark - UI layout
 
 - (void)configureView {
+    self.title = @"Jikan";
+    
 	self.view.backgroundColor = [UIColor systemBackgroundColor];
 	
 	self.navigationItem.leftBarButtonItem = self.closeBarButtonItem;
