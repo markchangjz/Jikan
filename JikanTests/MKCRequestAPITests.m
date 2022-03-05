@@ -16,7 +16,7 @@
     // Put teardown code here. This method is called after the invocation of each test method in the class.
 }
 
-- (void)testFireTopAPI {
+- (void)testFireTopAPISuccess {
     XCTestExpectation *expectation = [self expectationWithDescription:@"wait"];
     
     [[MKCRequestAPI sharedAPI] topWithType:@"anime" subtype:@"upcoming" page:1 successHandler:^(NSURLResponse *response, id responseObject) {
@@ -29,6 +29,19 @@
         XCTAssertEqual(model.entities.count, 50);
     } failureHandler:^(NSError *error) {
         XCTFail(@"error %@", error);
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:nil];
+}
+
+- (void)testFireTopAPIError {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"wait"];
+    
+    [[MKCRequestAPI sharedAPI] topWithType:@"anime" subtype:@"airing" page:8 successHandler:^(NSURLResponse *response, id responseObject) {
+        [expectation fulfill];
+        XCTFail();
+    } failureHandler:^(NSError *error) {
+        [expectation fulfill];
     }];
     
     [self waitForExpectationsWithTimeout:10.0 handler:nil];
