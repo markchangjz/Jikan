@@ -36,7 +36,7 @@
 #pragma mark - UI layout
 
 - (void)configureView {
-	self.view.backgroundColor = [UIColor whiteColor];
+	self.view.backgroundColor = [UIColor systemBackgroundColor];
 	
 	self.navigationItem.leftBarButtonItem = self.closeBarButtonItem;
 	
