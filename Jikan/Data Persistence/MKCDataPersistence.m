@@ -9,7 +9,12 @@ NSString *const MKCCollectedMovieDidChangeNotification = @"MKCCollectedMovieDidC
 	return [NSUserDefaults standardUserDefaults];
 }
 
-#pragma mark - movie
++ (void)resetAllData {
+    NSDictionary *dict = [self.userDefaults dictionaryRepresentation];
+    for (id key in dict) {
+        [self.userDefaults removeObjectForKey:key];
+    }
+}
 
 + (void)collectMovieWithItem:(MKCFavoriteItem *)item {
     NSMutableArray *collectedMovies = [[NSMutableArray alloc] initWithArray:[self collectedMovies]];

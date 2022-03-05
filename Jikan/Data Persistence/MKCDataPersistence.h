@@ -8,7 +8,7 @@ extern NSString *const MKCCollectedMovieDidChangeNotification;
 
 @interface MKCDataPersistence : NSObject
 
-#pragma mark - movie
++ (void)resetAllData;
 
 + (void)collectMovieWithItem:(MKCFavoriteItem *)item;
 + (void)removeCollectedMovieWithTrackId:(nonnull NSString *)trackId;
