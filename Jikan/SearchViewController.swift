@@ -11,7 +11,6 @@ import UIKit
 enum UIState {
     case loading
     case loadMoreLoading
-    case loadMoreFinish
     case partialLoaded
     case fullyLoaded
     case error(message: String)
@@ -80,7 +79,7 @@ extension SearchViewController {
                 if newData.count == 0 {
                     self.state = .fullyLoaded
                 } else {
-                    self.state = (self.fetchingPosition == 2) ? .partialLoaded : .loadMoreFinish
+                    self.state = .partialLoaded
                 }
             case .failure(let error):
                 self.state = .error(message: error.localizedDescription)
@@ -265,10 +264,6 @@ extension SearchViewController {
             tableView.isHidden = false
             activityIndicator.start(closure: nil)
             break
-        case .loadMoreFinish:
-            loadingIndicatorView.stopAnimating()
-            tableView.isHidden = false
-            activityIndicator.stop()
             break
         case .partialLoaded:
             loadingIndicatorView.stopAnimating()
