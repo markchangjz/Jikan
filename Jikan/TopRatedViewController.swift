@@ -79,6 +79,10 @@ extension TopRatedViewController {
     
     private func fetchData() {
         
+        if case .fullyLoaded = state {
+            return
+        }
+        
         state = (fetchingPosition == 1) ? .loading : .loadMoreLoading
         
         fetchData(page: fetchingPosition) { result in
@@ -187,6 +191,10 @@ extension TopRatedViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if case .partialLoaded = state {
+            return
+        }
         if case .fullyLoaded = state {
             return
         }
