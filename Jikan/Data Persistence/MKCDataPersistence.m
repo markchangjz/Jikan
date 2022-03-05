@@ -11,30 +11,44 @@ NSString *const MKCCollectedMovieDidChangeNotification = @"MKCCollectedMovieDidC
 
 #pragma mark - movie
 
-+ (void)collectMovieWithTrackId:(nonnull NSString *)trackId info:(nonnull NSDictionary *)info {
-    NSMutableDictionary *collectedMovies = [[NSMutableDictionary alloc] initWithDictionary:[self.userDefaults dictionaryForKey:MKCCollectedMoviesKey]];
-    collectedMovies[trackId] = info;
-    [self.userDefaults setObject:collectedMovies forKey:MKCCollectedMoviesKey];
++ (void)collectMovieWithItem:(MKCFavoriteItem *)item {
+    NSMutableArray *collectedMovies = [[NSMutableArray alloc] initWithArray:[self collectedMovies]];
+    [collectedMovies addObject:item];
+    
+    NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:collectedMovies requiringSecureCoding:YES error:nil];
+    [self.userDefaults setObject:encodedObject forKey:MKCCollectedMoviesKey];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:MKCCollectedMovieDidChangeNotification object:nil];
 }
 
 + (void)removeCollectedMovieWithTrackId:(NSString *)trackId {
-    NSMutableDictionary *collectedMovies = [[NSMutableDictionary alloc] initWithDictionary:[self.userDefaults dictionaryForKey:MKCCollectedMoviesKey]];
-    [collectedMovies removeObjectForKey:trackId];
-    [self.userDefaults setObject:collectedMovies forKey:MKCCollectedMoviesKey];
+    NSMutableArray<MKCFavoriteItem *> *collectedMovies = [[NSMutableArray alloc] initWithArray:[self collectedMovies]];
+    
+    NSIndexSet *indexSet = [collectedMovies indexesOfObjectsPassingTest:^BOOL(MKCFavoriteItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        return [obj.ID isEqualToString:trackId];
+    }];
+    [collectedMovies removeObjectsAtIndexes:indexSet];
+    
+    NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:collectedMovies requiringSecureCoding:YES error:nil];
+    [self.userDefaults setObject:encodedObject forKey:MKCCollectedMoviesKey];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:MKCCollectedMovieDidChangeNotification object:nil];
 }
 
 + (BOOL)hasCollectdMovieWithTrackId:(NSString *)trackId {
-    NSMutableDictionary *collectedMovies = [[NSMutableDictionary alloc] initWithDictionary:[self.userDefaults dictionaryForKey:MKCCollectedMoviesKey]];
-    return [collectedMovies.allKeys containsObject:trackId];
+    NSMutableArray<MKCFavoriteItem *> *collectedMovies = [[NSMutableArray alloc] initWithArray:[self collectedMovies]];
+ 
+    NSIndexSet *indexSet = [collectedMovies indexesOfObjectsPassingTest:^BOOL(MKCFavoriteItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        return [obj.ID isEqualToString:trackId];
+    }];
+    
+    return indexSet.count == 1;
 }
 
-+ (NSDictionary<NSString *, NSDictionary<NSString *, NSString *> *> *)collectedMovies {
-    NSDictionary *collectedMovies = [self.userDefaults dictionaryForKey:MKCCollectedMoviesKey];
-    return collectedMovies;
++ (NSArray<MKCFavoriteItem *> *)collectedMovies {
+    NSData *encodedObject = [self.userDefaults objectForKey:MKCCollectedMoviesKey];
+    NSArray *object = [NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];
+    return object;
 }
 
 @end

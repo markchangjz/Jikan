@@ -11,13 +11,8 @@ class FavoritesViewController: UIViewController {
         return tableView
     }()
     
-    private var collectedMovies: [String: [String: String]] {
-        MKCDataPersistence.collectedMovies()
-    }
+    private var collectedMovies = MKCDataPersistence.collectedMovies()
     
-    private lazy var IDs = collectedMovies.keys.map { $0 }
-    private lazy var values = collectedMovies.values.map { $0 }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,32 +26,25 @@ class FavoritesViewController: UIViewController {
 extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return values.count
+        return collectedMovies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MKCFavoriteTableViewCell.identifier(), for: indexPath) as! MKCFavoriteTableViewCell
         cell.selectionStyle = .none
         
-        cell.nameLabel.text = values[indexPath.row]["title"]
-        if let image = values[indexPath.row]["image"] {
-            cell.coverImageView.sd_setImage(with: URL(string: image))
-        }
+        cell.nameLabel.text = collectedMovies[indexPath.row].title
+        cell.coverImageView.sd_setImage(with: URL(string: collectedMovies[indexPath.row].image))
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let deleteID = IDs[indexPath.row]
-            
-            if let index = IDs.firstIndex(of: deleteID) {
-                MKCDataPersistence.removeCollectedMovie(withTrackId: deleteID)
-                IDs.remove(at: index)
-                values.remove(at: index)
-                
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            }
+            let deleteID = collectedMovies[indexPath.row].id
+            MKCDataPersistence.removeCollectedMovie(withTrackId: deleteID)
+            collectedMovies.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 }
@@ -75,8 +63,7 @@ extension FavoritesViewController {
             return
         }
         
-        IDs = collectedMovies.keys.map { $0 }
-        values = collectedMovies.values.map { $0 }
+        collectedMovies = MKCDataPersistence.collectedMovies()
         tableView.reloadData()
     }
 }

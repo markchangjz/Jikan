@@ -9,3 +9,4 @@
 #import "MKCDataPersistence.h"
 #import "UIImageView+WebCache.h"
 #import "MKCFavoriteTableViewCell.h"
+#import "MKCFavoriteItem.h"

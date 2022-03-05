@@ -189,10 +189,8 @@ extension SearchViewController: MKCTopRatedTableViewCellDelegate {
             MKCDataPersistence.removeCollectedMovie(withTrackId: trackId)
         } else {
             // Jikan API docs: Bulk Requests, You MUST use a delay of 4 (FOUR) SECONDS between each request
-            MKCDataPersistence.collectMovie(withTrackId: trackId, info: [
-                "title": title ?? "",
-                "image": image ?? "",
-            ])
+            let item = MKCFavoriteItem(id: trackId, title: title ?? "", image: image ?? "")
+            MKCDataPersistence.collectMovie(with: item)
         }
         
         let indexPath = IndexPath(row: index, section: 0)

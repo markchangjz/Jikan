@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import "MKCFavoriteItem.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -9,10 +10,10 @@ extern NSString *const MKCCollectedMovieDidChangeNotification;
 
 #pragma mark - movie
 
-+ (void)collectMovieWithTrackId:(nonnull NSString *)trackId info:(nonnull NSDictionary *)info;
++ (void)collectMovieWithItem:(MKCFavoriteItem *)item;
 + (void)removeCollectedMovieWithTrackId:(nonnull NSString *)trackId;
 + (BOOL)hasCollectdMovieWithTrackId:(nonnull NSString *)trackId;
-+ (NSDictionary<NSString *, NSDictionary<NSString *, NSString *> *> *)collectedMovies;
++ (NSArray<MKCFavoriteItem *> *)collectedMovies;
 
 @end
 
