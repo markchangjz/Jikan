@@ -1,6 +1,7 @@
 #import "MKCDataPersistence.h"
 
 NSString *const MKCCollectedMoviesKey = @"MKCCollectedMoviesKey";
+NSString *const MKCCollectedMovieDidChangeNotification = @"MKCCollectedMovieDidChangeNotification";
 
 @implementation MKCDataPersistence
 
@@ -14,12 +15,16 @@ NSString *const MKCCollectedMoviesKey = @"MKCCollectedMoviesKey";
     NSMutableDictionary *collectedMovies = [[NSMutableDictionary alloc] initWithDictionary:[self.userDefaults dictionaryForKey:MKCCollectedMoviesKey]];
     collectedMovies[trackId] = info;
     [self.userDefaults setObject:collectedMovies forKey:MKCCollectedMoviesKey];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:MKCCollectedMovieDidChangeNotification object:nil];
 }
 
 + (void)removeCollectedMovieWithTrackId:(NSString *)trackId {
     NSMutableDictionary *collectedMovies = [[NSMutableDictionary alloc] initWithDictionary:[self.userDefaults dictionaryForKey:MKCCollectedMoviesKey]];
     [collectedMovies removeObjectForKey:trackId];
     [self.userDefaults setObject:collectedMovies forKey:MKCCollectedMoviesKey];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:MKCCollectedMovieDidChangeNotification object:nil];
 }
 
 + (BOOL)hasCollectdMovieWithTrackId:(NSString *)trackId {

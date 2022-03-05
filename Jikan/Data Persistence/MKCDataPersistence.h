@@ -3,6 +3,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 extern NSString *const MKCCollectedMoviesKey;
+extern NSString *const MKCCollectedMovieDidChangeNotification;
 
 @interface MKCDataPersistence : NSObject
 

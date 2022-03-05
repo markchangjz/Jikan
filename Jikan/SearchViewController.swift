@@ -60,7 +60,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
 
         configureView()
-        
+        addObserver()
         fetchData()
     }
 }
@@ -208,6 +208,26 @@ extension SearchViewController {
         webViewController.loadURLString(url)
         let webViewNavigationController = UINavigationController(rootViewController: webViewController)
         present(webViewNavigationController, animated: true)
+    }
+}
+
+// MARK: Observer
+extension SearchViewController {
+    
+    private func addObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshTableViewData), name: NSNotification.Name.MKCCollectedMovieDidChange, object: nil)
+    }
+    
+    @objc private func refreshTableViewData() {
+        
+        if let navigationController = tabBarController?.selectedViewController as? UINavigationController,
+            navigationController.viewControllers.last == self {
+            return
+        }
+        
+        if let visibleIndexPaths = tableView.indexPathsForVisibleRows {
+            tableView.reloadRows(at: visibleIndexPaths, with: .none)
+        }
     }
 }
 

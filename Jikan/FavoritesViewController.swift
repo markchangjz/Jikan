@@ -22,6 +22,7 @@ class FavoritesViewController: UIViewController {
         super.viewDidLoad()
         
         configureView()
+        addObserver()
     }
     
 }
@@ -57,6 +58,26 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
         }
+    }
+}
+
+// MARK: Observer
+extension FavoritesViewController {
+    
+    private func addObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshTableViewData), name: NSNotification.Name.MKCCollectedMovieDidChange, object: nil)
+    }
+    
+    @objc private func refreshTableViewData() {
+        
+        if let navigationController = tabBarController?.selectedViewController as? UINavigationController,
+            navigationController.viewControllers.last == self {
+            return
+        }
+        
+        IDs = collectedMovies.keys.map { $0 }
+        values = collectedMovies.values.map { $0 }
+        tableView.reloadData()
     }
 }
 
