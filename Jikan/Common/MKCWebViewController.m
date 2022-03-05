@@ -45,12 +45,7 @@
 }
 
 - (void)layoutWebView {
-	if (@available(iOS 11.0, *)) {
-		[self.webView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor].active = YES;
-	} else {
-		[self.webView.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
-	}
-	
+    [self.webView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor].active = YES;
 	[self.webView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
 	[self.webView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor].active = YES;
 	[self.webView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor].active = YES;
