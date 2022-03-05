@@ -20,7 +20,7 @@
 		64C0F61327D0DE6B00EA0A96 /* MKCRequestAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C0F61227D0DE6B00EA0A96 /* MKCRequestAPITests.m */; };
 		64C0F61C27D0E2A200EA0A96 /* TopModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C0F61B27D0E2A200EA0A96 /* TopModel.swift */; };
 		64C0F61E27D0F0C500EA0A96 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C0F61D27D0F0C500EA0A96 /* FilterViewController.swift */; };
-		64C0F62027D1089B00EA0A96 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C0F61F27D1089B00EA0A96 /* SearchViewController.swift */; };
+		64C0F62027D1089B00EA0A96 /* TopRatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C0F61F27D1089B00EA0A96 /* TopRatedViewController.swift */; };
 		64C0F62627D10A2B00EA0A96 /* MKCTopRatedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C0F62227D10A2B00EA0A96 /* MKCTopRatedTableViewCell.m */; };
 		64C0F62727D10A2B00EA0A96 /* MKCBasicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C0F62527D10A2B00EA0A96 /* MKCBasicTableViewCell.m */; };
 		64C0F62927D2434400EA0A96 /* LoadMoreActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C0F62827D2434400EA0A96 /* LoadMoreActivityIndicator.swift */; };
@@ -67,7 +67,7 @@
 		64C0F61A27D0E2A100EA0A96 /* Jikan-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Jikan-Bridging-Header.h"; sourceTree = "<group>"; };
 		64C0F61B27D0E2A200EA0A96 /* TopModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopModel.swift; sourceTree = "<group>"; };
 		64C0F61D27D0F0C500EA0A96 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
-		64C0F61F27D1089B00EA0A96 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		64C0F61F27D1089B00EA0A96 /* TopRatedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedViewController.swift; sourceTree = "<group>"; };
 		64C0F62227D10A2B00EA0A96 /* MKCTopRatedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCTopRatedTableViewCell.m; sourceTree = "<group>"; };
 		64C0F62327D10A2B00EA0A96 /* MKCTopRatedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCTopRatedTableViewCell.h; sourceTree = "<group>"; };
 		64C0F62427D10A2B00EA0A96 /* MKCBasicTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCBasicTableViewCell.h; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 				64C0F5EC27D0D5C300EA0A96 /* SceneDelegate.h */,
 				64C0F5ED27D0D5C300EA0A96 /* SceneDelegate.m */,
 				64C0F61D27D0F0C500EA0A96 /* FilterViewController.swift */,
-				64C0F61F27D1089B00EA0A96 /* SearchViewController.swift */,
+				64C0F61F27D1089B00EA0A96 /* TopRatedViewController.swift */,
 				64C0F63227D3478900EA0A96 /* FavoritesViewController.swift */,
 				64C0F5F227D0D5C300EA0A96 /* Main.storyboard */,
 				64C0F5F527D0D5C500EA0A96 /* Assets.xcassets */,
@@ -429,7 +429,7 @@
 				64C0F62727D10A2B00EA0A96 /* MKCBasicTableViewCell.m in Sources */,
 				64C0F60A27D0D78B00EA0A96 /* MKCRequestAPI+Private.m in Sources */,
 				64C0F61E27D0F0C500EA0A96 /* FilterViewController.swift in Sources */,
-				64C0F62027D1089B00EA0A96 /* SearchViewController.swift in Sources */,
+				64C0F62027D1089B00EA0A96 /* TopRatedViewController.swift in Sources */,
 				64C0F5EB27D0D5C300EA0A96 /* AppDelegate.m in Sources */,
 				64C0F62927D2434400EA0A96 /* LoadMoreActivityIndicator.swift in Sources */,
 				64C0F60B27D0D78B00EA0A96 /* MKCURLGuide.m in Sources */,

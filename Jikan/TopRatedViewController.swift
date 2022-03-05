@@ -21,7 +21,7 @@ enum APIResponseError: Error {
     case unreachable
 }
 
-class SearchViewController: UIViewController {
+class TopRatedViewController: UIViewController {
     
     var type: String?
     var subtype: String?
@@ -65,7 +65,7 @@ class SearchViewController: UIViewController {
 }
 
 // MARK: API
-extension SearchViewController {
+extension TopRatedViewController {
     
     private func fetchData() {
         
@@ -139,7 +139,7 @@ extension SearchViewController {
 }
 
 // MARK: UITableViewDelegate & UITableViewDataSource
-extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
+extension TopRatedViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
@@ -186,7 +186,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 // MARK: MKCTopRatedTableViewCellDelegate
-extension SearchViewController: MKCTopRatedTableViewCellDelegate {
+extension TopRatedViewController: MKCTopRatedTableViewCellDelegate {
     
     func tableViewCell(_ topRatedTableViewCell: MKCTopRatedTableViewCell!, collectItemAt index: Int) {
         guard let type = type else { return }
@@ -210,7 +210,7 @@ extension SearchViewController: MKCTopRatedTableViewCellDelegate {
 }
 
 // MARK: Private
-extension SearchViewController {
+extension TopRatedViewController {
     
     private func presentWebView(_ url: String) {
         let webViewController = MKCWebViewController()
@@ -237,7 +237,7 @@ extension SearchViewController {
 }
 
 // MARK: Observer
-extension SearchViewController {
+extension TopRatedViewController {
     
     private func addObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(refreshTableViewData), name: NSNotification.Name.MKCCollectedMovieDidChange, object: nil)
@@ -257,7 +257,7 @@ extension SearchViewController {
 }
 
 // MARK: UI Layout
-extension SearchViewController {
+extension TopRatedViewController {
     
     private func configureView() {
         title = "Result"
