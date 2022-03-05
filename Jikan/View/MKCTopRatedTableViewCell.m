@@ -5,6 +5,14 @@
 @interface MKCTopRatedTableViewCell()
 
 @property (nonatomic, strong) UIStackView *mainStackView;
+@property (nonatomic, strong) UIImageView *coverImageView;
+@property (nonatomic, strong) UIStackView *contentStackView;
+@property (nonatomic, strong) UIButton *collectionButton;
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *rankLabel;
+@property (nonatomic, strong) UILabel *typeLabel;
+@property (nonatomic, strong) UILabel *startDateLabel;
+@property (nonatomic, strong) UILabel *endDateLabel;
 
 @end
 
@@ -18,12 +26,18 @@
 		[self layoutMainStackView];
 		[self layoutCoverImageView];
 		[self layoutCollectionButton];
+        [self configureContentStackView];
 	}
 	return self;
 }
 
 - (void)configureWithModel:(MKCTopEntityModel *)model {
     [self.coverImageView sd_setImageWithURL:[NSURL URLWithString:model.image]];
+    self.titleLabel.text = model.title ?: @"unspecified";
+    self.rankLabel.text = [NSString stringWithFormat:@"Ranked #%ld", (long)model.rank];
+    self.typeLabel.text = [NSString stringWithFormat:@"Type %@", model.type ?: @"unspecified"];
+    self.startDateLabel.text = [NSString stringWithFormat:@"Start Date %@", model.startDate ?: @"unspecified"];
+    self.endDateLabel.text = [NSString stringWithFormat:@"End Date %@", model.endDate ?: @"unspecified"];
 }
 
 #pragma mark - binding
@@ -55,6 +69,14 @@
 - (void)layoutCollectionButton {
 	[self.collectionButton.widthAnchor constraintEqualToConstant:30.0].active = YES;
 	[self.collectionButton.heightAnchor constraintEqualToConstant:30.0].active = YES;
+}
+
+- (void)configureContentStackView {
+    [self.contentStackView addArrangedSubview:self.titleLabel];
+    [self.contentStackView addArrangedSubview:self.rankLabel];
+    [self.contentStackView addArrangedSubview:self.typeLabel];
+    [self.contentStackView addArrangedSubview:self.startDateLabel];
+    [self.contentStackView addArrangedSubview:self.endDateLabel];
 }
 
 #pragma mark - lazy instance
@@ -101,6 +123,56 @@
 		_contentStackView.spacing = 2.0;
 	}
 	return _contentStackView;
+}
+
+- (UILabel *)titleLabel {
+    if (!_titleLabel) {
+        _titleLabel = [[UILabel alloc] init];
+        _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        _titleLabel.font = [UIFont boldSystemFontOfSize:18.0];
+        _titleLabel.numberOfLines = 2;
+    }
+    return _titleLabel;
+}
+
+- (UILabel *)rankLabel {
+    if (!_rankLabel) {
+        _rankLabel = [[UILabel alloc] init];
+        _rankLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        _rankLabel.font = [UIFont systemFontOfSize:14.0];
+        _rankLabel.numberOfLines = 1;
+    }
+    return _rankLabel;
+}
+
+- (UILabel *)typeLabel {
+    if (!_typeLabel) {
+        _typeLabel = [[UILabel alloc] init];
+        _typeLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        _typeLabel.font = [UIFont systemFontOfSize:14.0];
+        _typeLabel.numberOfLines = 1;
+    }
+    return _typeLabel;
+}
+
+- (UILabel *)startDateLabel {
+    if (!_startDateLabel) {
+        _startDateLabel = [[UILabel alloc] init];
+        _startDateLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        _startDateLabel.font = [UIFont systemFontOfSize:14.0];
+        _startDateLabel.numberOfLines = 1;
+    }
+    return _startDateLabel;
+}
+
+- (UILabel *)endDateLabel {
+    if (!_endDateLabel) {
+        _endDateLabel = [[UILabel alloc] init];
+        _endDateLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        _endDateLabel.font = [UIFont systemFontOfSize:14.0];
+        _endDateLabel.numberOfLines = 1;
+    }
+    return _endDateLabel;
 }
 
 @end
