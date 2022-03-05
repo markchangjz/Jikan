@@ -84,7 +84,7 @@ extension TopRatedViewController {
         fetchData(page: fetchingPosition) { result in
             switch result {
             case .success(let newData):
-                self.insertNewData(newData: newData)
+                self.insertNewData(newData)
                 
                 if newData.count == 0 {
                     self.state = .fullyLoaded
@@ -104,7 +104,7 @@ extension TopRatedViewController {
         }
     }
     
-    private func insertNewData(newData: [TopEntityModel]) {
+    private func insertNewData(_ newData: [TopEntityModel]) {
         if (newData.count > 0) {
             var newIndexPaths = [IndexPath]()
             for rowPosition in 0..<newData.count {
