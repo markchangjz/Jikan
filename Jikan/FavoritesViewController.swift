@@ -16,6 +16,7 @@ class FavoritesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        collectedMovies.reverse()
         configureView()
         addObserver()
     }
@@ -64,6 +65,7 @@ extension FavoritesViewController {
         }
         
         collectedMovies = MKCDataPersistence.collectedMovies()
+        collectedMovies.reverse()
         tableView.reloadData()
     }
 }
