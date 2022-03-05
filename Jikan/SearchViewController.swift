@@ -136,10 +136,17 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MKCTopRatedTableViewCell.identifier(), for: indexPath) as! MKCTopRatedTableViewCell
-        cell.selectionStyle = .none
         cell.configure(with: data[indexPath.row])
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let url = data[indexPath.row].url {
+            presentViewView(url)
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -154,6 +161,17 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         activityIndicator.start(closure: nil)
+    }
+}
+
+// MARK: Private
+extension SearchViewController {
+    
+    private func presentViewView(_ url: String) {
+        let webViewController = MKCWebViewController()
+        webViewController.loadURLString(url)
+        let webViewNavigationController = UINavigationController(rootViewController: webViewController)
+        present(webViewNavigationController, animated: true)
     }
 }
 

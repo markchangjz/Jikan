@@ -9,6 +9,7 @@ class TopEntityModel: NSObject, Decodable {
     @objc let startDate: String?
     @objc let endDate: String?
     @objc let type: String?
+    @objc let url: String?
     
     enum CodingKeys: String, CodingKey  {
         case id = "mal_id"
@@ -18,6 +19,7 @@ class TopEntityModel: NSObject, Decodable {
         case startDate = "start_date"
         case endDate = "end_date"
         case type = "type"
+        case url = "url"
     }
     
     required init(from decoder: Decoder) throws {
@@ -29,6 +31,7 @@ class TopEntityModel: NSObject, Decodable {
         startDate = try? container.decode(String.self, forKey: .startDate)
         endDate = try? container.decode(String.self, forKey: .endDate)
         type = try? container.decode(String.self, forKey: .type)
+        url = try? container.decode(String.self, forKey: .url)
     }
 }
 
