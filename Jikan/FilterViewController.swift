@@ -13,7 +13,7 @@ class FilterViewController: UIViewController {
             ("Movie", "movie"),
             ("Ova", "ova"),
             ("Special", "special"),
-            ("Bypopularity", "bypopularity"),
+            ("By Popularity", "bypopularity"),
             ("Favorite", "favorite"),
         ]),
         Option("Manga", "manga", [
@@ -23,7 +23,7 @@ class FilterViewController: UIViewController {
             ("Doujin", "doujin"),
             ("Manhwa", "manhwa"),
             ("Manhua", "manhua"),
-            ("Bypopularity", "bypopularity"),
+            ("By Popularity", "bypopularity"),
             ("Favorite", "favorite"),
         ]),
     ]
