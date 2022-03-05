@@ -152,7 +152,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let url = data[indexPath.row].url {
-            presentViewView(url)
+            presentWebView(url)
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -200,7 +200,7 @@ extension SearchViewController: MKCTopRatedTableViewCellDelegate {
 // MARK: Private
 extension SearchViewController {
     
-    private func presentViewView(_ url: String) {
+    private func presentWebView(_ url: String) {
         let webViewController = MKCWebViewController()
         webViewController.loadURLString(url)
         let webViewNavigationController = UINavigationController(rootViewController: webViewController)
