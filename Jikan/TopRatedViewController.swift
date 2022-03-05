@@ -318,6 +318,8 @@ extension TopRatedViewController {
 }
 
 #if DEBUG
+
+// For unit test
 extension TopRatedViewController {
     
     public var expose_state: UIState {
