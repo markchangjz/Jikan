@@ -44,6 +44,20 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let deleteID = IDs[indexPath.row]
+            
+            if let index = IDs.firstIndex(of: deleteID) {
+                MKCDataPersistence.removeCollectedMovie(withTrackId: deleteID)
+                IDs.remove(at: index)
+                values.remove(at: index)
+                
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+        }
+    }
 }
 
 // MARK: UI Layout
