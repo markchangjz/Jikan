@@ -6,10 +6,10 @@
 - (instancetype)initWithTopItem:(MKCTopEntityModel *)topItem {
     self = [super init];
     if (self) {
-        self.ID = [NSString stringWithFormat:@"%ld", (long)topItem.id];
-        self.title = topItem.title;
-        self.image = topItem.image;
-        self.url = topItem.url;
+        _ID = [NSString stringWithFormat:@"%ld", (long)topItem.id];
+        _title = topItem.title;
+        _image = topItem.image;
+        _url = topItem.url;
     }
     return self;
 }
