@@ -164,14 +164,9 @@ extension TopRatedViewController: UITableViewDelegate, UITableViewDataSource {
         cell.tag = indexPath.row
         cell.delegate = self
         cell.configure(with: data[indexPath.row])
-        
-        if let type = type, let  subtype = subtype {
-            let id = data[indexPath.row].id
-            let trackId = "\(id)_\(type)_\(subtype)"
-            cell.isCollected = MKCDataPersistence.hasCollectdMovie(withTrackId: trackId)
-        } else {
-            cell.isCollected = false
-        }
+                
+        let trackId = "\(data[indexPath.row].id)"
+        cell.isCollected = MKCDataPersistence.hasCollectdMovie(withTrackId: trackId)
         
         return cell
     }
@@ -207,18 +202,13 @@ extension TopRatedViewController: UITableViewDelegate, UITableViewDataSource {
 extension TopRatedViewController: MKCTopRatedTableViewCellDelegate {
     
     func tableViewCell(_ topRatedTableViewCell: MKCTopRatedTableViewCell!, collectItemAt index: Int) {
-        guard let type = type else { return }
-        guard let subtype = subtype else { return }
-        let id = data[index].id
-        let title = data[index].title
-        let image = data[index].image
-        let trackId = "\(id)_\(type)_\(subtype)"
+        let trackId = "\(data[index].id)"
         
         if MKCDataPersistence.hasCollectdMovie(withTrackId: trackId) {
             MKCDataPersistence.removeCollectedMovie(withTrackId: trackId)
         } else {
             // Jikan API docs: Bulk Requests, You MUST use a delay of 4 (FOUR) SECONDS between each request
-            let item = MKCFavoriteItem(id: trackId, title: title ?? "", image: image ?? "")
+            let item = MKCFavoriteItem(topItem: data[index])
             MKCDataPersistence.collectMovie(with: item)
         }
         

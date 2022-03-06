@@ -1,13 +1,15 @@
 #import "MKCFavoriteItem.h"
+#import "Jikan-Swift.h"
 
 @implementation MKCFavoriteItem
 
-- (instancetype)initWithID:(NSString *)ID title:(NSString *)title image:(NSString *)image {
+- (instancetype)initWithTopItem:(MKCTopEntityModel *)topItem {
     self = [super init];
     if (self) {
-        self.ID = ID;
-        self.title = title;
-        self.image = image;
+        self.ID = [NSString stringWithFormat:@"%ld", (long)topItem.id];
+        self.title = topItem.title;
+        self.image = topItem.image;
+        self.url = topItem.url;
     }
     return self;
 }
@@ -20,6 +22,7 @@
     [encoder encodeObject:self.ID forKey:@"ID"];
     [encoder encodeObject:self.title forKey:@"title"];
     [encoder encodeObject:self.image forKey:@"image"];
+    [encoder encodeObject:self.url forKey:@"url"];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {
@@ -28,6 +31,7 @@
         self.ID = [decoder decodeObjectForKey:@"ID"];
         self.title = [decoder decodeObjectForKey:@"title"];
         self.image = [decoder decodeObjectForKey:@"image"];
+        self.url = [decoder decodeObjectForKey:@"url"];
     }
     return self;
 }

@@ -11,7 +11,7 @@ class FavoritesViewController: UIViewController {
         return tableView
     }()
     
-    private var collectedMovies = MKCDataPersistence.collectedMovies()
+    private lazy var collectedMovies = MKCDataPersistence.collectedMovies()
     
     override func viewDidLoad() {
         super.viewDidLoad()

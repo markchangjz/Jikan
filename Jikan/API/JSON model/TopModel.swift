@@ -33,6 +33,17 @@ class TopEntityModel: NSObject, Decodable {
         type = try? container.decode(String.self, forKey: .type)
         url = try? container.decode(String.self, forKey: .url)
     }
+    
+    @objc init(id: Int, image: String?, title: String?, rank: Int, startDate: String?, endDate: String?, type: String?, url: String?) {
+        self.id = id
+        self.image = image
+        self.title = title
+        self.rank = rank
+        self.startDate = startDate
+        self.endDate = endDate
+        self.type = type
+        self.url = url
+    }
 }
 
 @objc(MKCTopModel)
