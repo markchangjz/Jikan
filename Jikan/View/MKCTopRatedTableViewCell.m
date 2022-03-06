@@ -35,7 +35,7 @@
     [self.coverImageView sd_setImageWithURL:[NSURL URLWithString:model.image]];
     self.titleLabel.text = model.title ?: @"unspecified";
     self.rankLabel.text = [NSString stringWithFormat:@"Ranked #%ld", (long)model.rank];
-    self.typeLabel.text = [NSString stringWithFormat:@"Type %@", model.type ?: @"unspecified"];
+    self.typeLabel.text = [NSString stringWithFormat:@" %@ ", model.type ?: @"unspecified"];
     self.startDateLabel.text = [NSString stringWithFormat:@"Start Date %@", model.startDate ?: @"unspecified"];
     self.endDateLabel.text = [NSString stringWithFormat:@"End Date %@", model.endDate ?: @"unspecified"];
 }
@@ -128,7 +128,7 @@
 		_contentStackView = [[UIStackView alloc] init];
 		_contentStackView.translatesAutoresizingMaskIntoConstraints = NO;
 		_contentStackView.axis = UILayoutConstraintAxisVertical;
-		_contentStackView.alignment = UIStackViewAlignmentFill;
+		_contentStackView.alignment = UIStackViewAlignmentLeading;
 		_contentStackView.spacing = 2.0;
 	}
 	return _contentStackView;
@@ -160,6 +160,8 @@
         _typeLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _typeLabel.font = [UIFont systemFontOfSize:14.0];
         _typeLabel.numberOfLines = 1;
+        _typeLabel.layer.borderColor = [UIColor systemGrayColor].CGColor;
+        _typeLabel.layer.borderWidth = 0.5;
     }
     return _typeLabel;
 }
