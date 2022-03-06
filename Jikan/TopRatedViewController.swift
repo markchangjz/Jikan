@@ -258,15 +258,7 @@ extension TopRatedViewController {
             return
         }
         
-        if let visibleIndexPaths = tableView.indexPathsForVisibleRows {
-            var refreshIndexPaths = visibleIndexPaths
-            
-            if let lastRow = visibleIndexPaths.last?.row, lastRow + 1 < data.count {
-                refreshIndexPaths.append(IndexPath(row: lastRow + 1, section: 0))
-            }
-            
-            tableView.reloadRows(at: refreshIndexPaths, with: .none)
-        }
+        tableView.reloadData()
     }
 }
 
