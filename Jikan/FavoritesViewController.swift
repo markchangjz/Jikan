@@ -32,12 +32,16 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MKCFavoriteTableViewCell.identifier(), for: indexPath) as! MKCFavoriteTableViewCell
-        cell.selectionStyle = .none
         
         cell.nameLabel.text = collectedMovies[indexPath.row].title
         cell.coverImageView.sd_setImage(with: URL(string: collectedMovies[indexPath.row].image))
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presentWebView(collectedMovies[indexPath.row].url)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -67,6 +71,17 @@ extension FavoritesViewController {
         collectedMovies = MKCDataPersistence.collectedMovies()
         collectedMovies.reverse()
         tableView.reloadData()
+    }
+}
+
+// MARK: Private
+extension FavoritesViewController {
+    
+    private func presentWebView(_ url: String) {
+        let webViewController = MKCWebViewController()
+        webViewController.loadURLString(url)
+        let webViewNavigationController = UINavigationController(rootViewController: webViewController)
+        present(webViewNavigationController, animated: true)
     }
 }
 
