@@ -1,8 +1,8 @@
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
 
-typedef void (^MKCSuccessHandler)(NSURLResponse *response, id responseObject);
-typedef void (^MKCFailureHandler)(NSError *error);
+typedef void (^MKCSuccessHandler)(NSURLResponse *response, id responseObject) NS_SWIFT_NAME(SuccessHandler);
+typedef void (^MKCFailureHandler)(NSError *error) NS_SWIFT_NAME(FailureHandler);
 
 NS_SWIFT_NAME(RequestAPI)
 @interface MKCRequestAPI : NSObject

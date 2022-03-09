@@ -64,10 +64,10 @@ class TopRatedViewControllerTests: XCTestCase {
 }
 
 class MockRequestAPI_TopRatedViewController: RequestAPI {
-    var successHandler: MKCSuccessHandler?
-    var failureHandler: MKCFailureHandler?
+    var successHandler: SuccessHandler?
+    var failureHandler: FailureHandler?
     
-    override func top(withType type: String!, subtype: String!, page: Int, successHandler: MKCSuccessHandler!, failureHandler: MKCFailureHandler!) -> URLSessionDataTask? {
+    override func top(withType type: String!, subtype: String!, page: Int, successHandler: SuccessHandler!, failureHandler: FailureHandler!) -> URLSessionDataTask? {
         self.successHandler = successHandler
         self.failureHandler = failureHandler
         return nil
