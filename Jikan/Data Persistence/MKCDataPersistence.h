@@ -6,6 +6,7 @@ NS_ASSUME_NONNULL_BEGIN
 extern NSString *const MKCCollectedMoviesKey;
 extern NSString *const MKCCollectedMovieDidChangeNotification;
 
+NS_SWIFT_NAME(DataPersistence)
 @interface MKCDataPersistence : NSObject
 
 + (void)resetAllData;

@@ -3,6 +3,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+NS_SWIFT_NAME(FavoriteItem)
 @interface MKCFavoriteItem : NSObject <NSCoding, NSSecureCoding>
 
 - (instancetype)initWithTopItem:(MKCTopEntityModel *)topItem;

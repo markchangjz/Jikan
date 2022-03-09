@@ -5,13 +5,13 @@ class FavoritesViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(MKCFavoriteTableViewCell.self, forCellReuseIdentifier: MKCFavoriteTableViewCell.identifier())
+        tableView.register(FavoriteTableViewCell.self, forCellReuseIdentifier: FavoriteTableViewCell.identifier())
         tableView.delegate = self
         tableView.dataSource = self
         return tableView
     }()
     
-    private lazy var collectedMovies = MKCDataPersistence.collectedMovies()
+    private lazy var collectedMovies = DataPersistence.collectedMovies()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +31,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: MKCFavoriteTableViewCell.identifier(), for: indexPath) as! MKCFavoriteTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteTableViewCell.identifier(), for: indexPath) as! FavoriteTableViewCell
         
         cell.nameLabel.text = collectedMovies[indexPath.row].title
         cell.coverImageView.sd_setImage(with: URL(string: collectedMovies[indexPath.row].image))
@@ -47,7 +47,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let deleteID = collectedMovies[indexPath.row].id
-            MKCDataPersistence.removeCollectedMovie(withTrackId: deleteID)
+            DataPersistence.removeCollectedMovie(withTrackId: deleteID)
             collectedMovies.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
@@ -68,7 +68,7 @@ extension FavoritesViewController {
             return
         }
         
-        collectedMovies = MKCDataPersistence.collectedMovies()
+        collectedMovies = DataPersistence.collectedMovies()
         collectedMovies.reverse()
         tableView.reloadData()
     }
@@ -78,7 +78,7 @@ extension FavoritesViewController {
 extension FavoritesViewController {
     
     private func presentWebView(_ url: String) {
-        let webViewController = MKCWebViewController()
+        let webViewController = WebViewController()
         webViewController.loadURLString(url)
         let webViewNavigationController = UINavigationController(rootViewController: webViewController)
         present(webViewNavigationController, animated: true)

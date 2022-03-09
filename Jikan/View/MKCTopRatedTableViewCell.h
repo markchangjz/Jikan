@@ -3,12 +3,14 @@
 @class MKCTopEntityModel;
 @class MKCTopRatedTableViewCell;
 
+NS_SWIFT_NAME(TopRatedTableViewCellDelegate)
 @protocol MKCTopRatedTableViewCellDelegate <NSObject>
 
 - (void)tableViewCell:(MKCTopRatedTableViewCell *)topRatedTableViewCell collectItemAtIndex:(NSInteger)index;
 
 @end
 
+NS_SWIFT_NAME(TopRatedTableViewCell)
 @interface MKCTopRatedTableViewCell : MKCBasicTableViewCell
 
 @property (nonatomic, weak) id<MKCTopRatedTableViewCellDelegate> delegate;

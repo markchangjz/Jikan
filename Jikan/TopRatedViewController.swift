@@ -23,7 +23,7 @@ enum APIResponseError: Error {
 
 class TopRatedViewController: UIViewController {
     
-    init(requestAPI: MKCRequestAPI = MKCRequestAPI.shared()) {
+    init(requestAPI: RequestAPI = RequestAPI.shared()) {
         super.init(nibName: nil, bundle: nil)
         self.requestAPI = requestAPI
     }
@@ -34,7 +34,7 @@ class TopRatedViewController: UIViewController {
     
     var type: String?
     var subtype: String?
-    private var requestAPI: MKCRequestAPI?
+    private var requestAPI: RequestAPI?
     private var data = [TopEntityModel]()
     private var fetchingPosition = 1
     
@@ -50,7 +50,7 @@ class TopRatedViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.isHidden = true
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(MKCTopRatedTableViewCell.self, forCellReuseIdentifier: MKCTopRatedTableViewCell.identifier())
+        tableView.register(TopRatedTableViewCell.self, forCellReuseIdentifier: TopRatedTableViewCell.identifier())
         tableView.delegate = self
         tableView.dataSource = self
         return tableView
@@ -160,13 +160,13 @@ extension TopRatedViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: MKCTopRatedTableViewCell.identifier(), for: indexPath) as! MKCTopRatedTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: TopRatedTableViewCell.identifier(), for: indexPath) as! TopRatedTableViewCell
         cell.tag = indexPath.row
         cell.delegate = self
         cell.configure(with: data[indexPath.row])
                 
         let trackId = "\(data[indexPath.row].id)"
-        cell.isCollected = MKCDataPersistence.hasCollectdMovie(withTrackId: trackId)
+        cell.isCollected = DataPersistence.hasCollectdMovie(withTrackId: trackId)
         
         return cell
     }
@@ -198,18 +198,18 @@ extension TopRatedViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-// MARK: MKCTopRatedTableViewCellDelegate
-extension TopRatedViewController: MKCTopRatedTableViewCellDelegate {
+// MARK: TopRatedTableViewCellDelegate
+extension TopRatedViewController: TopRatedTableViewCellDelegate {
     
-    func tableViewCell(_ topRatedTableViewCell: MKCTopRatedTableViewCell!, collectItemAt index: Int) {
+    func tableViewCell(_ topRatedTableViewCell: TopRatedTableViewCell!, collectItemAt index: Int) {
         let trackId = "\(data[index].id)"
         
-        if MKCDataPersistence.hasCollectdMovie(withTrackId: trackId) {
-            MKCDataPersistence.removeCollectedMovie(withTrackId: trackId)
+        if DataPersistence.hasCollectdMovie(withTrackId: trackId) {
+            DataPersistence.removeCollectedMovie(withTrackId: trackId)
         } else {
             // Jikan API docs: Bulk Requests, You MUST use a delay of 4 (FOUR) SECONDS between each request
-            let item = MKCFavoriteItem(topItem: data[index])
-            MKCDataPersistence.collectMovie(with: item)
+            let item = FavoriteItem(topItem: data[index])
+            DataPersistence.collectMovie(with: item)
         }
         
         let indexPath = IndexPath(row: index, section: 0)
@@ -221,7 +221,7 @@ extension TopRatedViewController: MKCTopRatedTableViewCellDelegate {
 extension TopRatedViewController {
     
     private func presentWebView(_ url: String) {
-        let webViewController = MKCWebViewController()
+        let webViewController = WebViewController()
         webViewController.loadURLString(url)
         let webViewNavigationController = UINavigationController(rootViewController: webViewController)
         present(webViewNavigationController, animated: true)

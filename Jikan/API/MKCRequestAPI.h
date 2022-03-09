@@ -4,6 +4,7 @@
 typedef void (^MKCSuccessHandler)(NSURLResponse *response, id responseObject);
 typedef void (^MKCFailureHandler)(NSError *error);
 
+NS_SWIFT_NAME(RequestAPI)
 @interface MKCRequestAPI : NSObject
 
 + (MKCRequestAPI *)sharedAPI;

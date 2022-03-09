@@ -63,7 +63,7 @@ class TopRatedViewControllerTests: XCTestCase {
     }
 }
 
-class MockRequestAPI_TopRatedViewController: MKCRequestAPI {
+class MockRequestAPI_TopRatedViewController: RequestAPI {
     var successHandler: MKCSuccessHandler?
     var failureHandler: MKCFailureHandler?
     
