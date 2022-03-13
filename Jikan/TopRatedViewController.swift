@@ -248,10 +248,10 @@ extension TopRatedViewController {
 extension TopRatedViewController {
     
     private func addObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(refreshTableViewData), name: NSNotification.Name.MKCCollectedMovieDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshTableViewData(_:)), name: NSNotification.Name.MKCCollectedMovieDidChange, object: nil)
     }
     
-    @objc private func refreshTableViewData() {
+    @objc private func refreshTableViewData(_ notification: Notification) {
         
         if let navigationController = tabBarController?.selectedViewController as? UINavigationController,
             navigationController.viewControllers.last == self {
