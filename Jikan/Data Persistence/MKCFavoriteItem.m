@@ -28,10 +28,10 @@
 - (id)initWithCoder:(NSCoder *)decoder {
     self = [super init];
     if (self) {
-        self.ID = [decoder decodeObjectForKey:@"ID"];
-        self.title = [decoder decodeObjectForKey:@"title"];
-        self.image = [decoder decodeObjectForKey:@"image"];
-        self.url = [decoder decodeObjectForKey:@"url"];
+        _ID = [decoder decodeObjectForKey:@"ID"];
+        _title = [decoder decodeObjectForKey:@"title"];
+        _image = [decoder decodeObjectForKey:@"image"];
+        _url = [decoder decodeObjectForKey:@"url"];
     }
     return self;
 }
