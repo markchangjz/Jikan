@@ -52,7 +52,7 @@ NSString *const MKCCollectedMovieDidChangeNotification = @"MKCCollectedMovieDidC
 
 + (NSArray<MKCFavoriteItem *> *)collectedMovies {
     NSData *encodedObject = [self.userDefaults objectForKey:MKCCollectedMoviesKey];
-    NSSet *set = [NSSet setWithArray:@[[NSArray class], [MKCFavoriteItem class]]];
+    NSSet *set = [NSSet setWithArray:@[[NSArray class], [MKCFavoriteItem class], [NSString class]]];
     NSArray<MKCFavoriteItem *> *object = [NSKeyedUnarchiver unarchivedObjectOfClasses:set fromData:encodedObject error:nil];
     return object;
 }
